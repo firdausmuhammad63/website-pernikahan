@@ -5,10 +5,21 @@
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="icon" href="./img/F-2.png" type="image/png" sizes="192x192">
       <title>Pernikahan • Firdaus & Alma</title>
+      <!-- Favicon -->
+      <link rel="icon" type="image/png" href="https://firdaus-alma.netlify.app/img/favicon-2.png" />
+      <link rel="shortcut icon" href="https://firdaus-alma.netlify.app/img/favicon-2.png" />
+      <link rel="apple-touch-icon" href="https://firdaus-alma.netlify.app/img/favicon-2.png" />
+
+      <!-- Open Graph Meta -->
+      <meta property="og:title" content="Firdaus & Alma Wedding" />
       <meta property="og:description" content="Dengan penuh syukur, kami mengundang Anda hadir pada hari bahagia kami, 15 Nov 2025. Silakan buka web untuk informasi lengkap." />
-      <meta property="og:image" content="https://firdaus-alma.netlify.app/img/F-2.png" />
+      <meta property="og:image" content="https://firdaus-alma.netlify.app/img/favicon-2.png" />
       <meta property="og:url" content="https://firdaus-alma.netlify.app/?v=2" />
       <meta property="og:type" content="website" />
+
+      <!-- Untuk WhatsApp & Telegram -->
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:image" content="https://firdaus-alma.netlify.app/img/favicon-2.png" />
       <link href="dist/output.css" rel="stylesheet">
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap');
@@ -280,14 +291,14 @@
 
           <!-- Nama -->
           <div>
-            <label class="text-xs font-semibold text-blue-800">Nama Lengkap</label>
-            <input id="rsvpName" required placeholder="Nama Anda" 
+            <label class="text-sm font-semibold text-blue-800">Nama Lengkap</label>
+            <input id="rsvpName" required placeholder="Masukkan nama lengkap..." 
                    class="w-full mt-1 p-3 rounded-lg border border-blue-300 focus:border-blue-800 focus:ring focus:ring-blue-200 transition" name="nama" />
           </div>
 
           <!-- Status Kehadiran -->
           <div>
-            <label class="text-xs font-semibold text-blue-800 mb-1 block">Status Kehadiran</label>
+            <label class="text-sm font-semibold text-blue-800 mb-1 block">Konfirmasi Kehadiran</label>
             <div class="flex gap-6 mt-1">
               <label class="flex items-center gap-2"><input type="radio" name="status" value="hadir" class="accent-blue-border-blue-800" checked> Hadir</label>
               <label class="flex items-center gap-2"><input type="radio" name="status" value="tidak hadir" class="accent-blue-border-blue-800"> Tidak Hadir</label>
@@ -296,17 +307,18 @@
 
           <!-- Jumlah Hadir -->
           <div>
-            <label class="text-xs font-semibold text-blue-800 mb-1 block">Jumlah Hadir</label>
+            <label class="text-sm font-semibold text-blue-800 mb-1 block">Jumlah Hadir</label>
             <div class="flex gap-4 mt-1">
               <label class="flex items-center gap-2"><input type="radio" name="jumlah hadir" value="1" class="accent-blue-border-blue-800"> 1</label>
               <label class="flex items-center gap-2"><input type="radio" name="jumlah hadir" value="2" class="accent-blue-border-blue-800"> 2</label>
               <label class="flex items-center gap-2"><input type="radio" name="jumlah hadir" value="3" class="accent-blue-border-blue-800"> 3</label>
+              <label class="flex items-center gap-2"><input type="radio" name="jumlah hadir" value="4" class="accent-blue-border-blue-800"> 4+</label>
             </div>
           </div>
 
-          <!-- Pesan / Doa -->
+          <!-- Pesan & Doa -->
           <div>
-            <label class="text-xs font-semibold text-blue-800 -mt-3                                                                                                                                   ">Pesan / Doa singkat</label>
+            <label class="text-sm font-semibold text-blue-800 -mt-3">Pesan & Doa singkat</label>
             <textarea id="rsvpMsg" rows="1" placeholder="Doa atau ucapan..." 
                       class="w-full mt-1 p-3 rounded-lg border border-blue-300 focus:border-blue-800 focus:ring focus:ring-blue-200 transition" name="pesan"></textarea>
           </div>
