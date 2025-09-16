@@ -10,16 +10,39 @@
       <link rel="shortcut icon" href="https://firdaus-alma.netlify.app/img/favicon-2.png" />
       <link rel="apple-touch-icon" href="https://firdaus-alma.netlify.app/img/favicon-2.png" />
 
-      <!-- Open Graph Meta -->
-      <meta property="og:title" content="Firdaus & Alma Wedding" />
+      <!-- Open Graph Meta untuk Facebook, WhatsApp, Telegram -->
+      <meta property="og:title" content="Pernikahan • Firdaus & Alma" />
       <meta property="og:description" content="Dengan penuh syukur, kami mengundang Anda hadir pada hari bahagia kami, 15 Nov 2025. Silakan buka web untuk informasi lengkap." />
       <meta property="og:image" content="https://firdaus-alma.netlify.app/img/favicon-2.png" />
-      <meta property="og:url" content="https://firdaus-alma.netlify.app/?v=2" />
+      <meta property="og:image:secure_url" content="https://firdaus-alma.netlify.app/img/favicon-2.png" />
+      <meta property="og:image:type" content="image/png" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content="Pernikahan Firdaus & Alma - 15 November 2025" />
+      <meta property="og:url" content="https://firdaus-alma.netlify.app/" />
       <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="Pernikahan Firdaus & Alma" />
+      <meta property="og:locale" content="id_ID" />
 
-      <!-- Untuk WhatsApp & Telegram -->
-      <meta name="twitter:card" content="summary" />
+      <!-- Twitter Card Meta untuk Twitter & beberapa platform lain -->
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Pernikahan • Firdaus & Alma" />
+      <meta name="twitter:description" content="Dengan penuh syukur, kami mengundang Anda hadir pada hari bahagia kami, 15 Nov 2025. Silakan buka web untuk informasi lengkap." />
       <meta name="twitter:image" content="https://firdaus-alma.netlify.app/img/favicon-2.png" />
+      <meta name="twitter:image:alt" content="Pernikahan Firdaus & Alma - 15 November 2025" />
+
+      <!-- Meta tambahan untuk Instagram & platform lain -->
+      <meta name="description" content="Dengan penuh syukur, kami mengundang Anda hadir pada hari bahagia kami, 15 Nov 2025. Silakan buka web untuk informasi lengkap." />
+      <meta name="keywords" content="pernikahan, wedding, firdaus, alma, undangan digital" />
+      <meta name="author" content="Firdaus & Alma" />
+
+      <!-- Canonical URL -->
+      <link rel="canonical" href="https://firdaus-alma.netlify.app/" />
+
+      <!-- Cache Control untuk memastikan gambar tidak expired -->
+      <meta http-equiv="Cache-Control" content="public, max-age=31536000" />
+      <meta http-equiv="Expires" content="Thu, 31 Dec 2025 23:59:59 GMT" />
+
       <link href="dist/output.css" rel="stylesheet">
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap');
@@ -147,7 +170,7 @@
         <div class="mt-1 mb-0 leading-none text-xl sm:text-xl md:text-xl font-serif italic font-bold text-blue-800">
         Sabtu, 15 November 2025
         </div>
-        <div class="mt-0 leading-none text-sm sm:text-base text-blue-500 italic">
+        <div class="mt-0 leading-none font-soft text-sm sm:text-base text-blue-500 italic">
         24 Jumadil Awwal 1447 H
         </div>
       </div>
@@ -220,16 +243,17 @@
         <p class="text-xs uppercase tracking-widest text-blue-800">Acara Pernikahan</p>
 
         <!-- Akad -->
-        <div class="flex flex-col items-center md:items-start space-y-1">
-          <h1 class="title text-4xl font-bold text-blue-800">Akad Nikah</h1>
-          <p class="text-xs md:text-base text-slate-600 font-sans">Sabtu, 15 November 2025 | 09:00 WIB</p>
+        <div class="flex flex-col items-center md:items-start space-y-0">
+          <h1 class="title text-4xl font-bold text-blue-800 mb-1">Akad Nikah</h1>
+          <p class="text-xs md:text-base text-slate-600 font-sans font-medium">Sabtu, 15 November 2025</p>
+          <p class="text-xs md:text-base text-slate-600 font-sans font-medium">08:00 – 10.30</p>
         </div>
 
         <!-- Resepsi -->
-        <div class="flex flex-col items-center md:items-start space-y-1">
-          <h1 class="title text-4xl font-bold text-blue-800">Resepsi</h1>
-          <p class="text-xs md:text-base text-slate-600 font-sans">Sabtu, 15 November 2025 | 11:00 – selesai.</p>
-        </div>
+        <div class="flex flex-col items-center md:items-start space-y-0">
+          <h1 class="title text-4xl font-bold text-blue-800 mb-1">Resepsi</h1>
+          <p class="text-xs md:text-base text-slate-600 font-sans font-medium">Sabtu, 15 November 2025</p>
+          <p class="text-xs md:text-base text-slate-600 font-sans font-medium">11:00 – selesai acara</p>        </div>
       </div>
 
       <!-- Gambar Jadwal -->
@@ -245,35 +269,100 @@
 </section>
 
 <!-- ===== LOKASI ===== -->
-<section id="lokasi" class="max-w-5xl mx-auto px-4 py-6 text-center fade-in">
-  <div class="card rounded-3xl bg-blue-50 overflow-hidden drop-shadow-lg space-y-14 transition-transform duration-300">
+<section id="lokasi" class="max-w-5xl mx-auto px-4 py-6 fade-in">
+  <div class="card rounded-3xl bg-blue-50 overflow-hidden drop-shadow-lg transition-transform duration-300">
     <div class="md:grid md:grid-cols-2">
 
-      <!-- Teks Lokasi -->
-      <div class="flex flex-col items-center md:items-start justify-center space-y-6 p-8 md:p-12 relative z-10">
-        <p class="text-xs uppercase tracking-widest text-blue-800">Lokasi Pernikahan</p>
+      <!-- KIRI: teks lokasi + garis + petunjuk -->
+      <div class="flex flex-col justify-center p-8 md:p-12 relative z-10">
+        <p class="text-xs uppercase tracking-widest text-blue-800 text-center md:text-left">
+          Lokasi Pernikahan
+        </p>
 
-        <div class="flex flex-col md:flex-row items-center gap-4 mt-4">
-          <div class="flex flex-col items-center md:items-start">
-            <p class="font-serif text-2xl font-semibold text-blue-800">
-              Aula Yonzikon 13,<br> RT 03/RW 03, Kel. Srengseng Sawah,<br>Kec. Jagakarsa, Jakarta Selatan.
-            </p>
+        <div class="mt-4 text-center md:text-left">
+          <p class="font-serif text-2xl font-semibold text-blue-800 leading-snug">
+            Aula Yonzikon 13,<br>
+            RT 03/RW 03, Kel. Srengseng Sawah,<br>
+            Kec. Jagakarsa, Jakarta Selatan.
+          </p>
+        </div>
+
+        <!-- Garis pemisah tipis (pasti terlihat) -->
+        <div class="w-48 mb-3 mx-auto md:mx-0 h-px bg-gray-300 my-4"></div>
+
+        <!-- Petunjuk Arah & Fasilitas -->
+        <div class="mt-1 mb-1">
+          <p class="text-sm font-nunito font-semibold text-blue-500 mb-2 text-center md:text-left">
+            Petunjuk Arah & Fasilitas
+          </p>
+
+          <!-- GRID fasilitas - Dipusatkan dengan alignment kiri untuk teks -->
+          <div class="flex justify-center md:justify-start">
+            <div class="grid grid-cols-1 mb-2 sm:grid-cols-2 gap-y-2 gap-x-6 max-w-sm">
+
+              <!-- Area Parkir Luas -->
+              <div class="flex items-center gap-2">
+                <div class="flex-shrink-0 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <span class="text-xs text-blue-500 font-lato">Area parkir luas</span>
+              </div>
+
+              <!-- Parkir Motor -->
+              <div class="flex items-center gap-2">
+                <div class="flex-shrink-0 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <span class="text-xs text-blue-500 font-lato">Parkir motor tersedia</span>
+              </div>
+
+              <!-- Transportasi Umum -->
+              <div class="flex items-center gap-2">
+                <div class="flex-shrink-0 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <span class="text-xs text-blue-500 font-lato">Akses transportasi umum</span>
+              </div>
+
+              <!-- Ramah Disabilitas -->
+              <div class="flex items-center gap-2">
+                <div class="flex-shrink-0 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <span class="text-xs text-blue-500 font-lato">Akses ramah disabilitas</span>
+              </div>
+
+            </div>
           </div>
-          <a href="https://maps.app.goo.gl/jdsRT2UvGUBmFdVX7" target="_blank"
-             class="mt-3 rounded-full py-3 px-6 bg-blue-800 text-white font-medium hover:scale-105 transition-all duration-300 shadow-lg">
-            Lihat di Maps
-          </a>
+
+          <!-- Tombol lihat maps -->
+          <div class="mt-3 text-center md:text-left">
+            <a href="https://maps.app.goo.gl/jdsRT2UvGUBmFdVX7" target="_blank" rel="noopener noreferrer"
+               class="inline-block rounded-full py-3 px-6 bg-blue-800 text-white font-medium hover:scale-105 transition-all duration-300 shadow-lg">
+              Lihat di Maps
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- Gambar Lokasi -->
-      <div class="relative md:h-auto">
-        <img src="https://www.wartamu.id/wp-content/uploads/2024/07/Google-Map.webp" 
-             alt="Tema Pernikahan" 
-             class="w-full h-full object-cover">
-        <div class="absolute inset-0" style="background: linear-gradient(to bottom, 
-        rgb(240, 243, 253) 0%, rgba(240, 253, 244, 0.485) 10%, rgba(178, 179, 238, 0.229)  90%);"></div>
+      <!-- KANAN: gambar lokasi dengan overlay -->
+      <div class="relative -mt-3 md:h-auto">
+        <img src="https://www.wartamu.id/wp-content/uploads/2024/07/Google-Map.webp"
+             alt="Peta lokasi Aula Yonzikon 13" 
+             class="w-full h-64 object-cover">
+        <div class="absolute inset-0 pointer-events-none"
+             style="background: linear-gradient(to bottom, rgba(240,243,253,0.95) 0%, rgba(240, 253, 244, 0.562) 10%, rgba(178,179,238,0.23) 90%);">
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -292,7 +381,7 @@
           <!-- Nama -->
           <div>
             <label class="text-sm font-semibold text-blue-800">Nama Lengkap</label>
-            <input id="rsvpName" required placeholder="Masukkan nama lengkap..." 
+            <input id="rsvpName" required placeholder="Nama lengkap Anda..." 
                    class="w-full mt-1 p-3 rounded-lg border border-blue-300 focus:border-blue-800 focus:ring focus:ring-blue-200 transition" name="nama" />
           </div>
 
@@ -336,7 +425,7 @@
              alt="Wedding background" 
              class="w-full h-full object-cover">
         <div class="absolute inset-0" style="background: linear-gradient(to bottom,
-         rgb(240, 243, 253) 0%, rgba(240, 253, 244, 0.822) 10%, rgba(159, 160, 229, 0.411) 90%);"></div>
+         rgb(240, 243, 253) 0%, rgba(240, 253, 244, 0.822) 10%, #9fa0e54e 90%);"></div>
       </div>
     </div>
   </div>

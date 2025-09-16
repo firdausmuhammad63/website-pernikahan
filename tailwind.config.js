@@ -7,7 +7,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        soft: ['Poppins', 'Lato'],
+        soft: ['Poppins', 'sans-serif'], 
+        lato: ['Lato', 'sans-serif'],
+        nunito: ['Nunito', 'sans-serif'],
+        quicksand: ['Quicksand', 'sans-serif'],
+        raleway: ['Raleway', 'sans-serif'],
       },
       colors: {
         'primary': '#3b82f6',
