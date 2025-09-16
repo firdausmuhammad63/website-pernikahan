@@ -137,6 +137,19 @@ form.addEventListener('submit', async (e) => {
       submitBtn.innerHTML = "Konfirmasi";
       form.reset();
       form.querySelector('input[name="status"][value="hadir"]').checked = true;
+
+      // ==================== NOTIFIKASI WA ADMIN ====================
+      const adminWA = "62895413263355"; // ganti dengan nomor admin
+      const namaTamu = formData.get("nama") || "Tamu";
+      const status = formData.get("status") || "";
+      const jumlah = formData.get("jumlah") || "1";
+
+      const waMessage = `RSVP baru: ${namaTamu}, ${jumlah} orang, Status: ${status}`;
+      const waURL = `https://wa.me/${adminWA}?text=${encodeURIComponent(waMessage)}`;
+
+      // Buka WA di tab baru (admin bisa langsung lihat notifikasi)
+      window.open(waURL, "_blank");
+
     } else {
       console.error('Error server', response.statusText);
       alert('Gagal mengirim data ke server.');
@@ -197,26 +210,5 @@ window.addEventListener("scroll", () => {
     navLinks.forEach(link => link.classList.remove("active"));
     navLinks[0].classList.add("active");
   }
-});
-
-// ==================== FASILITAS SLIDER FADE ====================
-document.addEventListener("DOMContentLoaded", () => {
-  const slides = document.querySelectorAll("#fasilitas-slider > div");
-  if (slides.length === 0) return;
-
-  let current = 0;
-
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.style.opacity = i === index ? "1" : "0";
-    });
-  }
-
-  showSlide(current);
-
-  setInterval(() => {
-    current = (current + 1) % slides.length;
-    showSlide(current);
-  }, 2500);
 });
 
