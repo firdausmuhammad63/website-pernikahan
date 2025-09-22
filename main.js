@@ -30,24 +30,29 @@ function updateCountdown() {
   smoothUpdate(document.getElementById("seconds"), s);
 }
 
+// jalankan countdown
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-// ==================== NAMA TAMU DISPLAY ====================
-function displayNamaTamu() {
-  const namaTamu = getQueryParam("nama") || getQueryParam("to");
-  const namaTamuEl = document.getElementById("namaTamu");
-  
-  if (namaTamuEl) {
-    if (namaTamu) {
-      namaTamuEl.textContent = namaTamu;
-      namaTamuEl.style.display = "block";
-    } else {
-      namaTamuEl.textContent = "Tamu Terhormat";
-      namaTamuEl.style.display = "block";
-    }
-  }
+// ==================== FOOTER NAMA TAMU ====================
+function capitalizeName(name) {
+  return name
+    .split(" ")
+    .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+    .join(" ");
 }
+
+function getQueryParam(param) {
+  return new URLSearchParams(window.location.search).get(param);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const namaTamuEl = document.getElementById("namaTamu");
+  if (namaTamuEl) {
+    const nama = getQueryParam("nama") || getQueryParam("to") || "Tamu Terhormat";
+    namaTamuEl.textContent = capitalizeName(nama);
+  }
+});
 
 // ==================== FADE-IN SCROLL ====================
 const fadeObserver = new IntersectionObserver((entries) => {
@@ -77,21 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.3 });
 
   sections.forEach(section => navObserver.observe(section));
-
-  // ========= Fungsi ambil query param dari URL ==========
-  function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-  }
-
-  // Ambil nama dari URL (contoh: ?to=Rizki%20Amin)
-  const nama = getQueryParam("to");
-  if (nama) {
-    document.getElementById("namaTamu").innerText = nama;
-  }
 });
 
-// ====================== SECONDS ANIMATION =======================
+// ====================== SECONDS FADE =======================
 const secondsEl = document.getElementById("seconds");
 if (secondsEl) {
   setInterval(() => {
@@ -99,24 +92,6 @@ if (secondsEl) {
     setTimeout(() => secondsEl.classList.remove("opacity-50"), 300);
   }, 1000);
 }
-
-// =================== FOOTER NAMA TAMU UNDANGAN ==================
-function capitalizeName(name) {
-  return name
-    .split(" ")
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join(" ");
-}
-
-function getQueryParam(param) {
-  const urlParams = new URLSearchParams(window.location.search);
-  let value = urlParams.get(param);
-  return value ? capitalizeName(value) : "";
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("namaTamu").textContent = getQueryParam("nama");
-});
 
 // ==================== RSVP ====================
 const form = document.forms['tamu-undangan'];
@@ -148,7 +123,6 @@ closeAlertBtn.addEventListener('click', closeAlert);
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
-
   submitBtn.disabled = true;
   submitBtn.innerHTML = `<span class="animate-spin mr-2">⏳</span> Mengirim...`;
 
@@ -166,14 +140,11 @@ form.addEventListener('submit', async (e) => {
       form.reset();
       form.querySelector('input[name="status"][value="hadir"]').checked = true;
     } else {
-      console.error('Error server', response.statusText);
       alert('Gagal mengirim data ke server.');
       submitBtn.disabled = false;
       submitBtn.innerHTML = "Konfirmasi";
     }
-
   } catch (err) {
-    console.error('Error koneksi', err);
     alert('Terjadi error koneksi.');
     submitBtn.disabled = false;
     submitBtn.innerHTML = "Konfirmasi";
@@ -194,37 +165,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("scroll", () => {
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll(".nav-link");
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          navLinks.forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === `#${entry.target.id}`) {
-              link.classList.add("active");
-            }
-          });
-        }
-      });
-    },
-    { threshold: 0.5, rootMargin: "-20% 0px -20% 0px" }
-  );
-
-  sections.forEach((section) => observer.observe(section));
-});
-
-window.addEventListener("scroll", () => {
   const scrollPos = window.scrollY;
-  const firstSection = document.querySelectorAll("section[id]")[0];
-  const navLinks = document.querySelectorAll(".nav-link");
+  const firstSection = sections[0];
   if (scrollPos < firstSection.offsetTop) {
     navLinks.forEach(link => link.classList.remove("active"));
     navLinks[0].classList.add("active");
   }
 });
-
-
