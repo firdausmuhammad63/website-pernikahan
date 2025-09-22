@@ -1,91 +1,6 @@
-// ==================== COUNTDOWN ====================
-const weddingDate = new Date('2025-11-15T08:00:00+07:00');
-
-function smoothUpdate(el, value) {
-  if (el.textContent != value) {
-    el.textContent = value;
-    el.classList.remove("blink-smooth"); // reset animasi
-    void el.offsetWidth;                 // trigger reflow
-    el.classList.add("blink-smooth");    // mulai animasi
-  }
-}
-
-function updateCountdown() {
-  const now = new Date();
-  const diff = weddingDate - now;
-
-  if (diff <= 0) {
-    document.getElementById("countdown").innerHTML = "Hari ini!";
-    return;
-  }
-
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor((diff / 3600000) % 24);
-  const m = Math.floor((diff / 60000) % 60);
-  const s = Math.floor((diff / 1000) % 60);
-
-  smoothUpdate(document.getElementById("days"), d);
-  smoothUpdate(document.getElementById("hours"), h);
-  smoothUpdate(document.getElementById("minutes"), m);
-  smoothUpdate(document.getElementById("seconds"), s);
-}
-
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
-// ==================== FADE-IN SCROLL ====================
-const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('show');
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
-
-// ==================== HIGHLIGHT NAV ACTIVE ====================
-document.addEventListener("DOMContentLoaded", () => {
-  const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".nav-link");
-
-  const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(link => {
-          link.classList.remove("active");
-          if (link.getAttribute("href") === `#${entry.target.id}`) {
-            link.classList.add("active");
-          }
-        });
-      }
-    });
-  }, { threshold: 0.3 });
-
-  sections.forEach(section => navObserver.observe(section));
-
-  // ========= Fungsi ambil query param dari URL ==========
-  function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-  }
-
-  // Ambil nama dari URL (contoh: ?to=Rizki%20Amin)
-  const nama = getQueryParam("to");
-  if (nama) {
-    document.getElementById("namaTamu").innerText = nama;
-  }
-});
-
-// ====================== SECONDS ANIMATION =======================
-const secondsEl = document.getElementById("seconds");
-if (secondsEl) {
-  setInterval(() => {
-    secondsEl.classList.add("opacity-50");
-    setTimeout(() => secondsEl.classList.remove("opacity-50"), 300);
-  }, 1000);
-}
-
-// =================== FOOTER NAMA TAMU UNDANGAN ==================
+// ==================== UTILITY FUNCTIONS ====================
 function capitalizeName(name) {
+  if (!name) return "";
   return name
     .split(" ")
     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
@@ -98,117 +13,409 @@ function getQueryParam(param) {
   return value ? capitalizeName(value) : "";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("namaTamu").textContent = getQueryParam("nama");
-});
-
-// ==================== RSVP ====================
-const form = document.forms['tamu-undangan'];
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzNstAsIRwLfs4FHawQd65x_zSp2zfSpbTffesuBsQg6pzp3cXSAgb2q6ET-BxkoOGw/exec';
-const customAlert = document.getElementById('customAlert');
-const closeAlertBtn = document.getElementById('closeAlert');
-const submitBtn = form.querySelector('button[type="submit"]');
-
-function showAlert() {
-  customAlert.classList.remove('hidden');
-  customAlert.classList.add('flex', 'opacity-100');
-  customAlert.querySelector('div').style.transform = 'scale(0.9)';
-  setTimeout(() => {
-    customAlert.querySelector('div').style.transform = 'scale(1)';
-  }, 20);
-}
-
-function closeAlert() {
-  customAlert.classList.add('hide');
-  setTimeout(() => {
-    customAlert.classList.add('hidden');
-    customAlert.classList.remove('flex', 'opacity-100', 'hide');
-    form.reset();
-    form.querySelector('input[name="status"][value="hadir"]').checked = true;
-  }, 300);
-}
-
-closeAlertBtn.addEventListener('click', closeAlert);
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  submitBtn.disabled = true;
-  submitBtn.innerHTML = `<span class="animate-spin mr-2">⏳</span> Mengirim...`;
-
-  try {
-    const formData = new FormData(form);
-    const statusValue = formData.get('status');
-    formData.set('status', statusValue);
-
-    const response = await fetch(scriptURL, { method: 'POST', body: formData });
-
-    if (response.ok) {
-      showAlert();
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = "Konfirmasi";
-      form.reset();
-      form.querySelector('input[name="status"][value="hadir"]').checked = true;
-    } else {
-      console.error('Error server', response.statusText);
-      alert('Gagal mengirim data ke server.');
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = "Konfirmasi";
+// ==================== DYNAMIC META TAGS UPDATE ====================
+function updateMetaTags() {
+  const namaTamu = getQueryParam("nama") || getQueryParam("to");
+  
+  if (namaTamu) {
+    const newTitle = `Undangan Pernikahan Firdaus & Alma - ${namaTamu}`;
+    const newDescription = `Kepada Yth. ${namaTamu}, dengan penuh syukur kami mengundang Anda hadir pada hari bahagia kami, 15 November 2025. Silakan buka undangan untuk informasi lengkap.`;
+    
+    // Update document title
+    document.title = newTitle;
+    
+    // Helper function untuk update meta tags
+    const updateMeta = (selector, attribute, value) => {
+      const meta = document.querySelector(selector);
+      if (meta) meta.setAttribute(attribute, value);
+    };
+    
+    // Update semua meta tags
+    updateMeta('meta[name="title"]', 'content', newTitle);
+    updateMeta('meta[name="description"]', 'content', newDescription);
+    updateMeta('meta[property="og:title"]', 'content', newTitle);
+    updateMeta('meta[property="og:description"]', 'content', newDescription);
+    updateMeta('meta[property="twitter:title"]', 'content', newTitle);
+    updateMeta('meta[property="twitter:description"]', 'content', newDescription);
+    updateMeta('meta[property="whatsapp:title"]', 'content', newTitle);
+    updateMeta('meta[property="whatsapp:description"]', 'content', newDescription);
+    
+    // Update URLs
+    const encodedNama = encodeURIComponent(namaTamu);
+    const newUrl = `https://firdaus-alma.netlify.app/?nama=${encodedNama}`;
+    
+    updateMeta('meta[property="og:url"]', 'content', newUrl);
+    updateMeta('meta[property="twitter:url"]', 'content', newUrl);
+    
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.href = newUrl;
+    
+    // Update browser history tanpa reload
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState({}, newTitle, `?nama=${encodedNama}`);
     }
-
-  } catch (err) {
-    console.error('Error koneksi', err);
-    alert('Terjadi error koneksi.');
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = "Konfirmasi";
   }
-});
+}
 
-// ==================== SMOOTH SCROLL ====================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      window.scrollTo({
-        top: target.offsetTop - 50,
-        behavior: "smooth"
-      });
+// ==================== COUNTDOWN ====================
+const weddingDate = new Date('2025-11-15T09:00:00+07:00'); // Sesuaikan dengan waktu akad
+
+function smoothUpdate(el, value) {
+  if (!el) return;
+  
+  if (el.textContent != value) {
+    el.textContent = value;
+    el.classList.remove("blink-smooth");
+    void el.offsetWidth; // Force reflow
+    el.classList.add("blink-smooth");
+  }
+}
+
+function updateCountdown() {
+  const now = new Date();
+  const diff = weddingDate - now;
+  
+  const countdownEl = document.getElementById("countdown");
+  if (!countdownEl) return;
+
+  if (diff <= 0) {
+    countdownEl.innerHTML = `
+      <div class="text-center bg-gradient-to-r from-blue-800 to-green-600 rounded-xl shadow-lg p-6 text-white">
+        <div class="text-3xl font-bold">🎉 Hari Ini! 🎉</div>
+        <div class="text-sm mt-2">Acara sedang berlangsung</div>
+      </div>
+    `;
+    return;
+  }
+
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff / 3600000) % 24);
+  const minutes = Math.floor((diff / 60000) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  smoothUpdate(document.getElementById("days"), days);
+  smoothUpdate(document.getElementById("hours"), hours);
+  smoothUpdate(document.getElementById("minutes"), minutes);
+  smoothUpdate(document.getElementById("seconds"), seconds);
+}
+
+// ==================== NAMA TAMU DISPLAY ====================
+function displayNamaTamu() {
+  const namaTamu = getQueryParam("nama") || getQueryParam("to");
+  const namaTamuEl = document.getElementById("namaTamu");
+  
+  if (namaTamuEl) {
+    if (namaTamu) {
+      namaTamuEl.textContent = namaTamu;
+      namaTamuEl.style.display = "block";
+    } else {
+      namaTamuEl.textContent = "Tamu Terhormat";
+      namaTamuEl.style.display = "block";
     }
-  });
-});
+  }
+}
 
-document.addEventListener("DOMContentLoaded", () => {
+// ==================== FADE-IN SCROLL ANIMATION ====================
+function initFadeInAnimation() {
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { 
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  document.querySelectorAll('.fade-in').forEach(el => {
+    fadeObserver.observe(el);
+  });
+}
+
+// ==================== NAVIGATION ACTIVE STATE ====================
+function initNavigationHighlight() {
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll(".nav-link");
+  
+  if (sections.length === 0 || navLinks.length === 0) return;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          navLinks.forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === `#${entry.target.id}`) {
-              link.classList.add("active");
-            }
-          });
-        }
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${entry.target.id}`) {
+            link.classList.add("active");
+          }
+        });
+      }
+    });
+  }, { 
+    threshold: 0.3,
+    rootMargin: "-20% 0px -20% 0px"
+  });
+
+  sections.forEach(section => navObserver.observe(section));
+  
+  // Handle scroll to top
+  window.addEventListener("scroll", () => {
+    const scrollPos = window.scrollY;
+    const firstSection = sections[0];
+    
+    if (scrollPos < firstSection.offsetTop - 100) {
+      navLinks.forEach(link => link.classList.remove("active"));
+      navLinks[0]?.classList.add("active");
+    }
+  });
+}
+
+// ==================== SMOOTH SCROLL ====================
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      
+      if (target) {
+        const offsetTop = target.offsetTop - 80; // Account for fixed nav
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth"
+        });
+      }
+    });
+  });
+}
+
+// ==================== SECONDS ANIMATION ====================
+function initSecondsAnimation() {
+  const secondsEl = document.getElementById("seconds");
+  if (secondsEl) {
+    setInterval(() => {
+      secondsEl.classList.add("opacity-50");
+      setTimeout(() => secondsEl.classList.remove("opacity-50"), 300);
+    }, 1000);
+  }
+}
+
+// ==================== RSVP FORM ====================
+function initRSVPForm() {
+  const form = document.forms['tamu-undangan'];
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzNstAsIRwLfs4FHawQd65x_zSp2zfSpbTffesuBsQg6pzp3cXSAgb2q6ET-BxkoOGw/exec';
+  const customAlert = document.getElementById('customAlert');
+  const closeAlertBtn = document.getElementById('closeAlert');
+  
+  if (!form || !customAlert || !closeAlertBtn) return;
+  
+  const submitBtn = form.querySelector('button[type="submit"]');
+  if (!submitBtn) return;
+
+  // Auto-fill nama dari URL parameter
+  const namaTamu = getQueryParam("nama") || getQueryParam("to");
+  const nameInput = form.querySelector('#rsvpName, input[name="nama"]');
+  if (nameInput && namaTamu) {
+    nameInput.value = namaTamu;
+  }
+
+  function showAlert() {
+    customAlert.classList.remove('hidden');
+    customAlert.classList.add('flex', 'opacity-100');
+    const alertDiv = customAlert.querySelector('div');
+    if (alertDiv) {
+      alertDiv.style.transform = 'scale(0.9)';
+      setTimeout(() => {
+        alertDiv.style.transform = 'scale(1)';
+      }, 50);
+    }
+    
+    // Auto close after 3 seconds
+    setTimeout(closeAlert, 3000);
+  }
+
+  function closeAlert() {
+    customAlert.classList.add('hide');
+    setTimeout(() => {
+      customAlert.classList.add('hidden');
+      customAlert.classList.remove('flex', 'opacity-100', 'hide');
+      
+      // Reset form
+      form.reset();
+      const defaultRadio = form.querySelector('input[name="status"][value="hadir"]');
+      if (defaultRadio) defaultRadio.checked = true;
+      
+      // Re-fill nama if available
+      if (nameInput && namaTamu) {
+        nameInput.value = namaTamu;
+      }
+    }, 300);
+  }
+
+  // Event listeners
+  closeAlertBtn.addEventListener('click', closeAlert);
+  
+  // Close alert when clicking outside
+  customAlert.addEventListener('click', (e) => {
+    if (e.target === customAlert) closeAlert();
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Disable submit button
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<span class="animate-spin mr-2">⏳</span> Mengirim...`;
+
+    try {
+      const formData = new FormData(form);
+      
+      // Add timestamp
+      formData.append('timestamp', new Date().toLocaleString('id-ID'));
+      
+      // Add URL info
+      formData.append('url_source', window.location.href);
+
+      const response = await fetch(scriptURL, { 
+        method: 'POST', 
+        body: formData 
       });
-    },
-    { threshold: 0.5, rootMargin: "-20% 0px -20% 0px" }
-  );
 
-  sections.forEach((section) => observer.observe(section));
-});
+      if (response.ok) {
+        showAlert();
+      } else {
+        throw new Error(`Server error: ${response.statusText}`);
+      }
 
-window.addEventListener("scroll", () => {
-  const scrollPos = window.scrollY;
-  const firstSection = document.querySelectorAll("section[id]")[0];
-  const navLinks = document.querySelectorAll(".nav-link");
-  if (scrollPos < firstSection.offsetTop) {
-    navLinks.forEach(link => link.classList.remove("active"));
-    navLinks[0].classList.add("active");
+    } catch (err) {
+      console.error('RSVP Error:', err);
+      alert('Maaf, terjadi kesalahan. Silakan coba lagi atau hubungi pengantin.');
+    } finally {
+      // Re-enable submit button
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = "Kirim Konfirmasi";
+    }
+  });
+}
+
+// ==================== PERFORMANCE OPTIMIZATION ====================
+function preloadImages() {
+  const imageUrls = [
+    'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1600&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1626247299010-209ebe85fe9d?q=80&w=1470&auto=format&fit=crop',
+    './img/F-NEW.png'
+  ];
+  
+  imageUrls.forEach(url => {
+    const img = new Image();
+    img.src = url;
+  });
+}
+
+// ==================== ERROR HANDLING ====================
+function handleErrors() {
+  window.addEventListener('error', (e) => {
+    console.error('JavaScript Error:', e.error);
+  });
+  
+  window.addEventListener('unhandledrejection', (e) => {
+    console.error('Unhandled Promise Rejection:', e.reason);
+  });
+}
+
+// ==================== INITIALIZATION ====================
+document.addEventListener("DOMContentLoaded", () => {
+  try {
+    // Core functions
+    updateMetaTags();
+    displayNamaTamu();
+    
+    // UI Animations
+    initFadeInAnimation();
+    initNavigationHighlight();
+    initSmoothScroll();
+    initSecondsAnimation();
+    
+    // Form handling
+    initRSVPForm();
+    
+    // Performance
+    preloadImages();
+    
+    // Error handling
+    handleErrors();
+    
+    console.log('✅ Wedding invitation initialized successfully');
+    
+  } catch (error) {
+    console.error('❌ Initialization error:', error);
   }
 });
 
+// Start countdown immediately
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
+// ==================== ADDITIONAL FEATURES ====================
+
+// Lazy loading untuk gambar
+function initLazyLoading() {
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.classList.remove('lazy');
+            imageObserver.unobserve(img);
+          }
+        }
+      });
+    });
+
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      imageObserver.observe(img);
+    });
+  }
+}
+
+// Service Worker untuk caching (optional)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(registration => {
+        console.log('SW registered: ', registration);
+      })
+      .catch(registrationError => {
+        console.log('SW registration failed: ', registrationError);
+      });
+  });
+}
+
+// Analytics tracking (optional)
+function trackEvent(eventName, parameters = {}) {
+  if (typeof gtag !== 'undefined') {
+    gtag('event', eventName, parameters);
+  }
+  console.log('Event tracked:', eventName, parameters);
+}
+
+// Track important interactions
+document.addEventListener('click', (e) => {
+  if (e.target.matches('.nav-link')) {
+    trackEvent('navigation_click', { section: e.target.getAttribute('href') });
+  }
+  
+  if (e.target.matches('a[href*="maps.app.goo.gl"]')) {
+    trackEvent('maps_click', { location: 'wedding_venue' });
+  }
+});
+
+// Export functions for external use if needed
+window.WeddingApp = {
+  updateMetaTags,
+  displayNamaTamu,
+  getQueryParam,
+  capitalizeName,
+  trackEvent
+};
