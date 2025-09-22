@@ -233,23 +233,30 @@ function initRSVPForm() {
     setTimeout(closeAlert, 3000);
   }
 
-  function closeAlert() {
-    customAlert.classList.add('hide');
-    setTimeout(() => {
-      customAlert.classList.add('hidden');
-      customAlert.classList.remove('flex', 'opacity-100', 'hide');
-      
-      // Reset form
-      form.reset();
-      const defaultRadio = form.querySelector('input[name="status"][value="hadir"]');
-      if (defaultRadio) defaultRadio.checked = true;
-      
-      // Re-fill nama if available
-      if (nameInput && namaTamu) {
-        nameInput.value = namaTamu;
-      }
-    }, 300);
-  }
+function closeAlert() {
+  customAlert.classList.add('hide');
+  setTimeout(() => {
+    customAlert.classList.add('hidden');
+    customAlert.classList.remove('flex', 'opacity-100', 'hide');
+    
+    // ✅ RESET SIMPLE - KOSONGKAN SEMUA
+    form.reset();
+    
+    // Kosongkan manual textarea dan input
+    form.querySelectorAll('input[type="text"], textarea').forEach(el => el.value = '');
+    form.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+    
+    // Set default
+    const defaultRadio = form.querySelector('input[name="status"][value="hadir"]');
+    if (defaultRadio) defaultRadio.checked = true;
+    
+    // Re-fill nama
+    const nameInput = form.querySelector('#rsvpName, input[name="nama"]');
+    const namaTamu = getQueryParam("nama") || getQueryParam("to");
+    if (nameInput && namaTamu) nameInput.value = namaTamu;
+    
+  }, 300);
+}
 
   // Event listeners
   closeAlertBtn.addEventListener('click', closeAlert);
