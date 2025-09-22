@@ -96,6 +96,44 @@
           to { opacity: 1; transform: scale(1); }
         }
 
+        /* Gradient text animation untuk "Firdaus & Alma" */
+        .gradient-text {
+          background: linear-gradient(
+            90deg,
+            #4d3e02,   /* gold soft */
+            #fdd251,   /* golden */
+            #1e3a8a,   /* navy */
+            #435fab   /* navy tipis */
+          );
+          background-size: 400% 400%;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: gradientShift 17s linear infinite;
+        }
+
+        @keyframes gradientShift {
+          0%   { background-position: 0% 50%; }
+          100% { background-position: 400% 50%; }
+        }
+        
+        /* ====== Style CooldownTIME ====== */
+        .uppercase {
+          text-transform: uppercase;
+        }
+        .tracking-wide {
+          letter-spacing: 0.025em;
+        }
+        .blink-smooth {
+          animation: blinkSmooth 0.2s ease;
+        }
+
+        @keyframes blinkSmooth {
+          0%   { opacity: 1; }
+          50%  { opacity: 0.7; }
+          100% { opacity: 1; }
+        }
+        
         .fade-in {
           opacity: 0;
           transform: translateY(20px);
@@ -126,7 +164,7 @@
         }
       </style>
     </head>
-  <body class="body bg-gradient-to-b from-blue-200 to-white text-slate-700 transition-opacity duration-700">
+<body class="body bg-gradient-to-b from-blue-200 to-white text-slate-700 transition-opacity duration-700">
     
 <!-- ===== HOME ===== -->
 <section id="home" class="max-w-5xl mx-auto px-4 py-7 -mb-4 text-center fade-in">
@@ -137,7 +175,7 @@
       <div class="p-6 sm:p-8 md:p-12 flex flex-col items-center text-center space-y-4">
         <p class="text-xs uppercase tracking-widest text-blue-800">Undangan Pernikahan</p>
 
-        <h1 class="title text-3xl sm:text-4xl md:text-5xl text-blue-800 font-extrabold">
+        <h1 class="title text-3xl sm:text-4xl md:text-5xl font-extrabold gradient-text">
           Firdaus & Alma
         </h1>
 
@@ -250,7 +288,7 @@
         <div class="flex flex-col items-center md:items-start space-y-0">
           <h1 class="title text-4xl font-bold text-blue-800 mb-1">Resepsi</h1>
           <p class="text-base md:text-base text-slate-600 font-sans tracking-tighter">Sabtu, 15 November 2025</p>
-          <p class="text-base md:text-base text-slate-600 font-sans font-medium tracking-tighter">10:00 – 14:00 WIB</p>
+          <p class="text-base md:text-base text-slate-600 font-sans font-medium tracking-tighter">11:00 – 14:00 WIB</p>
         </div>
       </div>
 

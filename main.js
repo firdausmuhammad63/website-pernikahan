@@ -1,5 +1,15 @@
 // ==================== COUNTDOWN ====================
 const weddingDate = new Date('2025-11-15T08:00:00+07:00');
+
+function smoothUpdate(el, value) {
+  if (el.textContent != value) {
+    el.textContent = value;
+    el.classList.remove("blink-smooth"); // reset animasi
+    void el.offsetWidth;                 // trigger reflow
+    el.classList.add("blink-smooth");    // mulai animasi
+  }
+}
+
 function updateCountdown() {
   const now = new Date();
   const diff = weddingDate - now;
@@ -14,11 +24,12 @@ function updateCountdown() {
   const m = Math.floor((diff / 60000) % 60);
   const s = Math.floor((diff / 1000) % 60);
 
-  document.getElementById("days").innerText = d;
-  document.getElementById("hours").innerText = h;
-  document.getElementById("minutes").innerText = m;
-  document.getElementById("seconds").innerText = s;
+  smoothUpdate(document.getElementById("days"), d);
+  smoothUpdate(document.getElementById("hours"), h);
+  smoothUpdate(document.getElementById("minutes"), m);
+  smoothUpdate(document.getElementById("seconds"), s);
 }
+
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
@@ -87,8 +98,9 @@ function getQueryParam(param) {
   return value ? capitalizeName(value) : "";
 }
 
-document.getElementById("namaTamu").textContent =
-  "" + getQueryParam("nama");
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("namaTamu").textContent = getQueryParam("nama");
+});
 
 // ==================== RSVP ====================
 const form = document.forms['tamu-undangan'];
@@ -198,4 +210,5 @@ window.addEventListener("scroll", () => {
     navLinks[0].classList.add("active");
   }
 });
+
 
