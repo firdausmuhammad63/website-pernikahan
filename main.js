@@ -233,30 +233,51 @@ function initRSVPForm() {
     setTimeout(closeAlert, 3000);
   }
 
-function closeAlert() {
-  customAlert.classList.add('hide');
-  setTimeout(() => {
-    customAlert.classList.add('hidden');
-    customAlert.classList.remove('flex', 'opacity-100', 'hide');
-    
-    // ✅ RESET SIMPLE - KOSONGKAN SEMUA
+  function closeAlert() {
+    customAlert.classList.add('hide');
+    setTimeout(() => {
+      customAlert.classList.add('hidden');
+      customAlert.classList.remove('flex', 'opacity-100', 'hide');
+      
+      // ✅ RESET FORM LENGKAP - KOSONGKAN SEMUA FIELD
+      resetFormCompletely();
+      
+    }, 300);
+  }
+
+  // ✅ FUNGSI RESET FORM LENGKAP
+  function resetFormCompletely() {
+    // Reset seluruh form
     form.reset();
     
-    // Kosongkan manual textarea dan input
-    form.querySelectorAll('input[type="text"], textarea').forEach(el => el.value = '');
-    form.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+    // Kosongkan semua input text dan textarea secara manual
+    const textInputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
+    textInputs.forEach(input => {
+      input.value = '';
+    });
     
-    // Set default
-    const defaultRadio = form.querySelector('input[name="status"][value="hadir"]');
-    if (defaultRadio) defaultRadio.checked = true;
+    // Reset radio buttons ke default (Hadir)
+    const defaultStatusRadio = form.querySelector('input[name="status"][value="hadir"]');
+    if (defaultStatusRadio) defaultStatusRadio.checked = true;
     
-    // Re-fill nama
-    const nameInput = form.querySelector('#rsvpName, input[name="nama"]');
-    const namaTamu = getQueryParam("nama") || getQueryParam("to");
-    if (nameInput && namaTamu) nameInput.value = namaTamu;
+    // Reset jumlah hadir (uncheck semua)
+    const jumlahRadios = form.querySelectorAll('input[name="jumlah hadir"]');
+    jumlahRadios.forEach(radio => radio.checked = false);
     
-  }, 300);
-}
+    // Kosongkan textarea pesan
+    const messageTextarea = form.querySelector('#rsvpMsg, textarea[name="pesan"]');
+    if (messageTextarea) {
+      messageTextarea.value = '';
+      messageTextarea.textContent = '';
+    }
+    
+    // Re-fill nama dari URL jika ada (hanya nama yang tetap terisi)
+    if (nameInput && namaTamu) {
+      nameInput.value = namaTamu;
+    }
+    
+    console.log('✅ Form berhasil direset lengkap');
+  }
 
   // Event listeners
   closeAlertBtn.addEventListener('click', closeAlert);
@@ -289,6 +310,12 @@ function closeAlert() {
 
       if (response.ok) {
         showAlert();
+        
+        // ✅ LANGSUNG RESET FORM SETELAH SUBMIT BERHASIL
+        setTimeout(() => {
+          resetFormCompletely();
+        }, 500); // Delay sedikit untuk UX yang smooth
+        
       } else {
         throw new Error(`Server error: ${response.statusText}`);
       }
@@ -301,6 +328,11 @@ function closeAlert() {
       submitBtn.disabled = false;
       submitBtn.innerHTML = "Kirim Konfirmasi";
     }
+  });
+
+  // ✅ TAMBAHAN: Reset form saat halaman dimuat ulang
+  window.addEventListener('load', () => {
+    resetFormCompletely();
   });
 }
 
