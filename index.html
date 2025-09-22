@@ -3,46 +3,152 @@
     <head>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="icon" href="./img/F-2.png" type="image/png" sizes="192x192">
+      
+      <!-- Dynamic Title (akan diupdate oleh JavaScript) -->
       <title>Pernikahan • Firdaus & Alma</title>
-      <!-- Favicon -->
-      <link rel="icon" type="image/png" href="https://firdaus-alma.netlify.app/img/favicon-2.png" />
-      <link rel="shortcut icon" href="https://firdaus-alma.netlify.app/img/favicon-2.png" />
-      <link rel="apple-touch-icon" href="https://firdaus-alma.netlify.app/img/favicon-2.png" />
-
-      <!-- Open Graph Meta untuk Facebook, WhatsApp, Telegram -->
+      
+      <!-- Favicon Multi-Format -->
+      <link rel="icon" type="image/png" sizes="32x32" href="./img/F-NEW.png" />
+      <link rel="icon" type="image/png" sizes="16x16" href="./img/F-NEW.png" />
+      <link rel="apple-touch-icon" sizes="180x180" href="./img/F-NEW.png" />
+      <link rel="shortcut icon" href="./img/F-2.png" />
+      
+      <!-- Primary Meta Tags -->
+      <meta name="title" content="Pernikahan • Firdaus & Alma" />
+      <meta name="description" content="Dengan penuh syukur, kami mengundang Anda hadir pada hari bahagia kami, 15 November 2025. Silakan buka web untuk informasi lengkap." />
+      <meta name="keywords" content="pernikahan, wedding, firdaus, alma, undangan digital, wedding invitation" />
+      <meta name="author" content="Firdaus & Alma" />
+      <meta name="robots" content="index, follow" />
+      
+      <!-- Open Graph / Facebook -->
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://firdaus-alma.netlify.app/" />
       <meta property="og:title" content="Pernikahan • Firdaus & Alma" />
-      <meta property="og:description" content="Dengan penuh syukur, kami mengundang Anda hadir pada hari bahagia kami, 15 Nov 2025. Silakan buka web untuk informasi lengkap." />
-      <meta property="og:image" content="https://firdaus-alma.netlify.app/img/favicon-2.png" />
-      <meta property="og:image:secure_url" content="https://firdaus-alma.netlify.app/img/favicon-2.png" />
+      <meta property="og:description" content="Dengan penuh syukur, kami mengundang Anda hadir pada hari bahagia kami, 15 November 2025. Silakan buka web untuk informasi lengkap." />
+      <meta property="og:image" content="https://firdaus-alma.netlify.app/img/F-NEW.png" />
+      <meta property="og:image:secure_url" content="https://firdaus-alma.netlify.app/img/F-NEW.png" />
       <meta property="og:image:type" content="image/png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content="Pernikahan Firdaus & Alma - 15 November 2025" />
-      <meta property="og:url" content="https://firdaus-alma.netlify.app/" />
-      <meta property="og:type" content="website" />
+      <meta property="og:image:alt" content="Undangan Pernikahan Firdaus & Alma - 15 November 2025" />
       <meta property="og:site_name" content="Pernikahan Firdaus & Alma" />
       <meta property="og:locale" content="id_ID" />
-
-      <!-- Twitter Card Meta untuk Twitter & beberapa platform lain -->
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Pernikahan • Firdaus & Alma" />
-      <meta name="twitter:description" content="Dengan penuh syukur, kami mengundang Anda hadir pada hari bahagia kami, 15 Nov 2025. Silakan buka web untuk informasi lengkap." />
-      <meta name="twitter:image" content="https://firdaus-alma.netlify.app/img/favicon-2.png" />
-      <meta name="twitter:image:alt" content="Pernikahan Firdaus & Alma - 15 November 2025" />
-
-      <!-- Meta tambahan untuk Instagram & platform lain -->
-      <meta name="description" content="Dengan penuh syukur, kami mengundang Anda hadir pada hari bahagia kami, 15 Nov 2025. Silakan buka web untuk informasi lengkap." />
-      <meta name="keywords" content="pernikahan, wedding, firdaus, alma, undangan digital" />
-      <meta name="author" content="Firdaus & Alma" />
-
+      
+      <!-- Twitter -->
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content="https://firdaus-alma.netlify.app/" />
+      <meta property="twitter:title" content="Pernikahan • Firdaus & Alma" />
+      <meta property="twitter:description" content="Dengan penuh syukur, kami mengundang Anda hadir pada hari bahagia kami, 15 November 2025. Silakan buka web untuk informasi lengkap." />
+      <meta property="twitter:image" content="https://firdaus-alma.netlify.app/img/F-NEW.png" />
+      <meta property="twitter:image:alt" content="Undangan Pernikahan Firdaus & Alma - 15 November 2025" />
+      
+      <!-- WhatsApp Specific (menggunakan Open Graph) -->
+      <meta property="whatsapp:title" content="Pernikahan • Firdaus & Alma" />
+      <meta property="whatsapp:description" content="Dengan penuh syukur, kami mengundang Anda hadir pada hari bahagia kami, 15 November 2025." />
+      <meta property="whatsapp:image" content="https://firdaus-alma.netlify.app/img/F-NEW.png" />
+      
+      <!-- Telegram Specific -->
+      <meta property="telegram:channel" content="@firdausalma_wedding" />
+      
+      <!-- Additional Meta -->
+      <meta name="theme-color" content="#1e40af" />
+      <meta name="msapplication-TileColor" content="#1e40af" />
+      <meta name="msapplication-TileImage" content="./img/F-NEW.png" />
+      
       <!-- Canonical URL -->
       <link rel="canonical" href="https://firdaus-alma.netlify.app/" />
-
-      <!-- Cache Control untuk memastikan gambar tidak expired -->
+      
+      <!-- Preload Critical Resources -->
+      <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" as="style" />
+      <link rel="preload" href="./img/F-NEW.png" as="image" />
+      
+      <!-- DNS Prefetch -->
+      <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+      <link rel="dns-prefetch" href="//images.unsplash.com" />
+      
+      <!-- Cache Control -->
       <meta http-equiv="Cache-Control" content="public, max-age=31536000" />
       <meta http-equiv="Expires" content="Thu, 31 Dec 2025 23:59:59 GMT" />
-
+      
+      <!-- Dynamic Meta Tags Script -->
+      <script>
+      (function() {
+          // Ambil parameter dari URL
+          const urlParams = new URLSearchParams(window.location.search);
+          const namaTamu = urlParams.get('nama') || urlParams.get('to') || '';
+          
+          if (namaTamu) {
+              // Format nama dengan proper case
+              const namaFormatted = namaTamu
+                  .split(' ')
+                  .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                  .join(' ');
+              
+              // Update title
+              const newTitle = `Undangan Pernikahan Firdaus & Alma - ${namaFormatted}`;
+              document.title = newTitle;
+              
+              // Update description
+              const newDescription = `Kepada Yth. ${namaFormatted}, dengan penuh syukur kami mengundang Anda hadir pada hari bahagia kami, 15 November 2025. Silakan buka undangan untuk informasi lengkap.`;
+              
+              // Update meta tags yang ada
+              const updateMeta = (selector, attribute, value) => {
+                  const meta = document.querySelector(selector);
+                  if (meta) meta.setAttribute(attribute, value);
+              };
+              
+              // Update semua meta tags terkait
+              updateMeta('meta[name="title"]', 'content', newTitle);
+              updateMeta('meta[name="description"]', 'content', newDescription);
+              updateMeta('meta[property="og:title"]', 'content', newTitle);
+              updateMeta('meta[property="og:description"]', 'content', newDescription);
+              updateMeta('meta[property="twitter:title"]', 'content', newTitle);
+              updateMeta('meta[property="twitter:description"]', 'content', newDescription);
+              updateMeta('meta[property="whatsapp:title"]', 'content', newTitle);
+              updateMeta('meta[property="whatsapp:description"]', 'content', newDescription);
+              
+              // Update canonical URL dengan parameter
+              const canonical = document.querySelector('link[rel="canonical"]');
+              if (canonical) {
+                  canonical.href = `https://firdaus-alma.netlify.app/?nama=${encodeURIComponent(namaTamu)}`;
+              }
+              
+              // Update og:url
+              updateMeta('meta[property="og:url"]', 'content', `https://firdaus-alma.netlify.app/?nama=${encodeURIComponent(namaTamu)}`);
+              updateMeta('meta[property="twitter:url"]', 'content', `https://firdaus-alma.netlify.app/?nama=${encodeURIComponent(namaTamu)}`);
+          }
+      })();
+      </script>
+      
+      <!-- Structured Data untuk SEO -->
+      <script type="application/ld+json">
+      {
+          "@context": "https://schema.org",
+          "@type": "Event",
+          "name": "Pernikahan Firdaus & Alma",
+          "description": "Acad Nikah dan Resepsi Pernikahan Firdaus Muhammad & Alma Gianti Rizkiana",
+          "startDate": "2025-11-15T09:00:00+07:00",
+          "endDate": "2025-11-15T14:00:00+07:00",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "location": {
+              "@type": "Place",
+              "name": "Aula Yonzikon 13",
+              "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "RT 03/RW 03, Kel. Srengseng Sawah",
+                  "addressLocality": "Jagakarsa",
+                  "addressRegion": "Jakarta Selatan",
+                  "addressCountry": "ID"
+              }
+          },
+          "image": "https://firdaus-alma.netlify.app/img/F-NEW.png",
+          "organizer": {
+              "@type": "Person",
+              "name": "Firdaus & Alma"
+          }
+      }
+      </script>
       <link href="dist/output.css" rel="stylesheet">
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap');
@@ -133,7 +239,7 @@
           50%  { opacity: 0.7; }
           100% { opacity: 1; }
         }
-        
+
         .fade-in {
           opacity: 0;
           transform: translateY(20px);
