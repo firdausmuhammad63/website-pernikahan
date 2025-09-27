@@ -338,13 +338,14 @@
 
 <!-- ===== PENGANTIN ===== -->
 <section id="pengantin" class="max-w-5xl mx-auto px-4 py-6 mt-6 text-center fade-in">
-  <div class="card rounded-3xl bg-blue-50 overflow-hidden drop-shadow-lg space-y-14 transition-transform duration-300">
-    <div class="grid md:grid-cols-2">
+  <div class="card rounded-3xl bg-blue-50 overflow-hidden drop-shadow-lg transition-transform duration-300">
+    <div class="grid md:grid-cols-2 items-center">
       
       <!-- Teks Pengantin -->
-      <div class="flex flex-col items-center md:items-start space-y-3 p-8 md:p-12">
+      <div class="flex flex-col items-center space-y-6 p-8 md:p-12">
+        
         <!-- Firdaus -->
-        <div class="flex flex-col items-center md:items-start space-y-1 relative z-10">
+        <div class="flex flex-col items-center space-y-1 relative z-10">
           <p class="text-xs uppercase tracking-widest pb-3 text-blue-800">Pengantin Pernikahan</p>
           <h1 class="title font-bold text-3xl md:text-5xl text-blue-800 m-0">Firdaus Muhammad, S.Kom</h1>
           <p class="font-sans font-light text-slate-600 text-xs md:text-base pt-1">
@@ -353,30 +354,35 @@
         </div>
 
         <!-- Simbol & -->
-        <h1 class="title text-3xl md:text-5xl text-blue-800 m-0 -mt-4 relative z-10">&</h1>
+        <h1 class="title text-3xl md:text-5xl text-blue-800 m-0 relative z-10">&</h1>
 
         <!-- Alma -->
-        <div class="flex flex-col items-center md:items-start relative z-10">
+        <div class="flex flex-col items-center relative z-10">
           <h1 class="title font-bold text-3xl md:text-5xl text-blue-800 m-0">Alma Gianti Rizkiana</h1>
           <p class="font-sans font-light text-slate-600 text-xs md:text-base pt-2 relative z-10">
             Putri ke-1 dari Bapak Mulyono Hadmu, ST <br> & Ibu Reni Saripudin
           </p>
         </div>
-        </div>
+      </div>
 
-        <!-- Background tema pernikahan -->
-        <div class="relative h-44 -mt-4 bg-cover scale-125 bg-center z-0 brightness-75" style="background-image:url('https://images.unsplash.com/photo-1626247299010-209ebe85fe9d?q=80&w=1470&auto=format&fit=crop');">
-          <div class="absolute inset-0" style="background: linear-gradient(to bottom, 
-              rgb(240, 243, 253) 0%, rgba(240, 246, 253, 0.95) 10%, rgba(0,0,0,0) 90%);">
-          </div>
-        </div>
+<!-- Background tema pernikahan -->
+<div class="relative bg-cover md:h-auto">
+  <img src="https://images.unsplash.com/photo-1626247299010-209ebe85fe9d?q=80&w=1470&auto=format&fit=crop" 
+       alt="Tema Pernikahan" 
+       class="w-full h-full object-cover brightness-90">
+  <div class="absolute inset-0" style="background: linear-gradient(to bottom, 
+      rgb(240, 243, 253) 0%, rgb(240, 246, 253) 10%, rgba(0,0,0,0) 90%);"></div>
+</div>
+
     </div>
   </div>
 </section>
 
+
 <!-- ===== JADWAL ===== -->
-<section id="jadwal" class="max-w-5xl mx-auto px-4 py-6 text-center fade-in">
-  <div class="card rounded-3xl bg-blue-50 overflow-hidden drop-shadow-lg space-y-14 transition-transform duration-300">
+<section id="jadwal" class="max-w-5xl mx-auto px-4 py-12 text-center fade-in">
+  <div class="card rounded-3xl bg-blue-50 overflow-hidden drop-shadow-lg space-y-10 transition-transform duration-300">
+    
     <div class="md:grid md:grid-cols-2">
       
       <!-- Teks Jadwal -->
@@ -384,31 +390,47 @@
         <p class="text-xs uppercase tracking-widest text-blue-800">Acara Pernikahan</p>
 
         <!-- Akad -->
-        <div class="flex flex-col items-center md:items-start space-y-0">
-          <h1 class="title text-4xl font-bold text-blue-800 mb-1">Akad Nikah</h1>
-          <p class="text-base md:text-base text-slate-600 font-sans tracking-tighter">Sabtu, 15 November 2025</p>
-          <p class="text-base md:text-base text-slate-600 font-sans font-medium tracking-tighter">08:00 – 09.30 WIB</p>
+        <div class="flex flex-col items-center md:items-start space-y-1">
+          <h2 class="text-4xl title font-bold text-blue-800">Akad Nikah</h2>
+          <p class="text-base text-slate-600 font-sans tracking-tight">Sabtu, 15 November 2025</p>
+          <p class="text-base text-slate-600 font-sans font-medium tracking-tight">08:00 – 09:30 WIB</p>
         </div>
 
         <!-- Resepsi -->
-        <div class="flex flex-col items-center md:items-start space-y-0">
-          <h1 class="title text-4xl font-bold text-blue-800 mb-1">Resepsi</h1>
-          <p class="text-base md:text-base text-slate-600 font-sans tracking-tighter">Sabtu, 15 November 2025</p>
-          <p class="text-base md:text-base text-slate-600 font-sans font-medium tracking-tighter">11:00 – 14:00 WIB</p>
+        <div class="flex flex-col items-center md:items-start space-y-1">
+          <h2 class="text-4xl title font-bold text-blue-800">Resepsi</h2>
+          <p class="text-base text-slate-600 font-sans tracking-tight">Sabtu, 15 November 2025</p>
+          <p class="text-base text-slate-600 font-sans font-medium tracking-tight">11:00 – 14:00 WIB</p>
         </div>
+
+        <!-- Himbauan -->
+        <div class="mt-5 text-center md:text-left">
+
+        <!-- Garis pemisah tipis (pasti terlihat) -->
+        <div class="w-48 mb-3 mx-auto md:mx-0 h-px bg-gray-300 my-4"></div>
+          <p class="text-sm font-nunito font-semibold text-blue-500 mb-2">Himbauan</p>
+          <p class="text-xs md:text-sm text-blue-600">
+            Bagi yang ingin menyaksikan akad, <br> harap hadir sebelum <b>08.00 WIB</b>.
+          </p>
+        </div>
+
       </div>
 
       <!-- Gambar Jadwal -->
-      <div class="relative bg-cover md:h-auto">
+      <div class="relative md:h-auto">
         <img src="https://images.unsplash.com/photo-1734705797879-0c23e9edca21?w=1600&auto=format&fit=crop&q=60" 
              alt="Tema Pernikahan" 
              class="w-full h-full object-cover">
         <div class="absolute inset-0" style="background: linear-gradient(to bottom, 
-        rgb(240, 243, 253) 0%, rgba(240, 253, 244, 0.93) 10%,rgba(217, 218, 239, 0.174) 90%);"></div>
+          rgb(240, 243, 253) 0%, rgba(240, 253, 244, 0.93) 10%, rgba(217, 218, 239, 0.174) 90%);">
+        </div>
       </div>
+
     </div>
+    
   </div>
 </section>
+
 
 <!-- ===== LOKASI ===== -->
 <section id="lokasi" class="max-w-5xl mx-auto px-4 py-6 fade-in">
